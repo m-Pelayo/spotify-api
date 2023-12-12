@@ -4,4 +4,4 @@ Pasos a seguir para la configuración
 '''git clone...'''
 2. Configurar el archivo .env
 '''cp.env .env.local'''
-3. 
+3.  
