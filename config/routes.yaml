@@ -2,7 +2,6 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-
 usuarios:
   path: /usuarios
   controller: App\Controller\UsuariosController::usuarios
@@ -55,7 +54,7 @@ capitulos:
 
 capituloId:
   path: /podcast/{id}/capitulo/{id}
-  controller: App\Controller\CapituloController::capituloByIdandPodcastId
+  controller: App\Controller\CapituloController::capituloByIdAndPodcastId
   methods: GET
 
 suscripciones:
@@ -87,4 +86,3 @@ playlist_usuario:
   path: /usuario/{id}/playlist/{id}
   controller: App\Controller\PlaylistController::playlistByIdAndUserId
   methods: GET, PUT, DELETE
-
