@@ -5,27 +5,24 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
-class UsuarioController extends AbstractController
+class PodcastController extends AbstractController
 {
-    public function usuarios(Request $request)
-    {
-        if($request->isMethod('GET')) {}
-        if($request->isMethod('POST')) {}
-    }
-
-    public function usuarioById(Request $request)
-    {
-        if($request->isMethod('GET')) {}
-        if($request->isMethod('PUT')) {}
-        if($request->isMethod('DELETE')) {}
-    }
-
-    public function seguidosUsuarioById(Request $request)
+    public function podcasts(Request $request)
     {
         if($request->isMethod('GET')) {}
     }
 
-    public function seguirUsuarioById(Request $request)
+    public function podcastById(Request $request)
+    {
+        if($request->isMethod('GET')) {}
+    }
+
+    public function podcastsUsuarioById(Request $request)
+    {
+        if($request->isMethod('GET')) {}
+    }
+
+    public function seguirPodcastById(Request $request)
     {
         if($request->isMethod('POST')) {}
         if($request->isMethod('DELETE')) {}
