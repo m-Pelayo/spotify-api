@@ -1,3 +1,90 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+
+usuarios:
+  path: /usuarios
+  controller: App\Controller\UsuariosController::usuarios
+  methods: GET, POST
+
+usuario:
+  path: /usuario/{id}
+  controller: App\Controller\UsuariosController::usuarioById
+  methods: GET, PUT, DELETE
+
+seguidos_usuario:
+  path: /usuario/{id}/seguidos
+  controller: App\Controller\UsuariosController::seguidosUsuarioById
+  methods: GET
+
+seguir_usuario:
+  path: /usuario/{id}/sigue/{usuario_seguido_id}
+  controller: App\Controller\UsuariosController::seguirUsuarioById
+  methods: POST, DELETE
+
+configuracionesUsuario:
+  path: /configuracion/{id}/configuracion
+  controller: App\Controller\ConfiguracionController::configuracionesUsuarioById
+  methods: GET, PUT
+
+podcasts:
+  path: /podcasts
+  controller: App\Controller\PodcastController::podcasts
+  methods: GET, POST
+
+podcast:
+  path: /podcast/{id}
+  controller: App\Controller\PodcastController::podcastById
+  methods: GET
+
+podcasts_usuario:
+  path: /usuario/{id}/podcasts
+  controller: App\Controller\PodcastController::podcastsUsuarioById
+  methods: GET
+
+seguir_podcast:
+  path: /usuario/{id}/podcast/{id}
+  controller: App\Controller\PodcastController::seguirPodcastById
+  methods: POST, DELETE
+
+capitulos:
+  path: /podcast/{id}/capitulos
+  controller: App\Controller\CapituloController::capitulosByPodcastId
+  methods: GET
+
+capituloId:
+  path: /podcast/{id}/capitulo/{id}
+  controller: App\Controller\CapituloController::capituloByIdandPodcastId
+  methods: GET
+
+suscripciones:
+  path: /usuario/{id}/suscripciones
+  controller: App\Controller\SuscripcionController::suscripcionesByUserId
+  methods: GET
+
+suscripcion:
+  path: /usuario/{id}/suscripcion/{id}
+  controller: App\Controller\SuscripcionController::suscripcionByIdAndUserId
+  methods: GET
+
+playlists:
+  path: /playlists
+  controller: App\Controller\PlaylistController::playlistByUserId
+  methods: GET, POST
+
+playlist:
+  path: /playlist/{id}
+  controller: App\Controller\PlaylistController::playlistById
+  methods: GET
+
+playlists_usuario:
+  path: /usuario/{id}/playlists
+  controller: App\Controller\PlaylistController::playlistByUserId
+  methods: GET
+
+playlist_usuario:
+  path: /usuario/{id}/playlist/{id}
+  controller: App\Controller\PlaylistController::playlistByIdAndUserId
+  methods: GET, PUT, DELETE
+
