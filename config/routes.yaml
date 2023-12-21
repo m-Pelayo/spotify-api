@@ -86,3 +86,68 @@ playlist_usuario:
   path: /usuario/{id}/playlist/{id}
   controller: App\Controller\PlaylistController::playlistByIdAndUserId
   methods: GET, PUT, DELETE
+
+canciones:
+  path: /canciones
+  controller: App\Controller\CancionController::canciones
+  methods: GET
+
+cancion:
+  path: /cancion/{id}
+  controller: App\Controller\CancionController::cancion
+  methods: GET
+
+canciones_playlist:
+  path: /playlist/{id}/canciones
+  controller: App\Controller\CancionController::cancionesPlaylist
+  methods: GET
+
+anadir_cancion_playlist:
+  path: /playlist/{id}/cancion/{id}
+  controller: App\Controller\CancionController::anadirCancionToPlaylist
+  methods: POST, DELETE
+
+artistas:
+  path: /artistas
+  controller: App\Controller\ArtistaController::artistas
+  methods: GET
+
+albums_artista:
+  path: /artista/{id}/albums
+  controller: App\Controller\ArtistaController::albumsArtista
+  methods: GET
+
+album_artista:
+  path: /artista/{id}/album/{id}
+  controller: App\Controller\ArtistaController::albumByIdAndArtistaId
+  methods: GET
+
+albums:
+  path: /albums
+  controller: App\Controller\AlbumController::albums
+  methods: GET
+
+album:
+  path: /album/{id}
+  controller: App\Controller\AlbumController::album
+  methods: GET
+
+canciones_album:
+  path: /album/{id}/canciones
+  controller: App\Controller\CancionController::cancionesAlbum
+  methods: GET
+
+calidades:
+  path: /calidades
+  controller: App\Controller\CalidadController::calidades
+  methods: GET
+
+idiomas:
+  path: /idioma
+  controller: App\Controller\IdiomaController::idioma
+  methods: GET
+
+tipos_desarga:
+  path: /tipo_descarga
+  controller: App\Controller\TipoDescargaController::tiposDescarga
+  methods: GET
