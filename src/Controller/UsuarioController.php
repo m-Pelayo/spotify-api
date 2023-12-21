@@ -13,19 +13,19 @@ class UsuarioController extends AbstractController
         if($request->isMethod('POST')) {}
     }
 
-    public function usuarioById(Request $request)
+    public function usuario(Request $request)
     {
         if($request->isMethod('GET')) {}
         if($request->isMethod('PUT')) {}
         if($request->isMethod('DELETE')) {}
     }
 
-    public function seguidosUsuarioById(Request $request)
+    public function seguidosUsuario(Request $request)
     {
         if($request->isMethod('GET')) {}
     }
 
-    public function seguirUsuarioById(Request $request)
+    public function seguirUsuario(Request $request)
     {
         if($request->isMethod('POST')) {}
         if($request->isMethod('DELETE')) {}

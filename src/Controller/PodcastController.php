@@ -12,17 +12,17 @@ class PodcastController extends AbstractController
         if($request->isMethod('GET')) {}
     }
 
-    public function podcastById(Request $request)
+    public function podcast(Request $request)
     {
         if($request->isMethod('GET')) {}
     }
 
-    public function podcastsUsuarioById(Request $request)
+    public function podcastsUsuario(Request $request)
     {
         if($request->isMethod('GET')) {}
     }
 
-    public function seguirPodcastById(Request $request)
+    public function seguirPodcast(Request $request)
     {
         if($request->isMethod('POST')) {}
         if($request->isMethod('DELETE')) {}

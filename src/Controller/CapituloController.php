@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CapituloController extends AbstractController
 {
-    public function capitulosByPodcastId(Request $request)
+    public function capitulosPodcast(Request $request)
     {
         if($request->isMethod('GET')) {}
     }

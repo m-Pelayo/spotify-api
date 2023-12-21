@@ -7,12 +7,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SuscripcionController extends AbstractController
 {
-    public function suscripcionesByUserId(Request $request)
+    public function suscripcionesUsuario(Request $request)
     {
         if($request->isMethod('GET')) {}
     }
 
-    public function suscripcionByIdAndUserId(Request $request)
+    public function suscripcionByIdAndUsuarioId(Request $request)
     {
         if($request->isMethod('GET')) {}
     }

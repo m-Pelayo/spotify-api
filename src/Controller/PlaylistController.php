@@ -13,17 +13,17 @@ class PlaylistController extends AbstractController
         if($request->isMethod('POST')) {}
     }
 
-    public function playlistsById(Request $request)
+    public function playlist(Request $request)
     {
         if($request->isMethod('GET')) {}
     }
 
-    public function playlistsByUserId(Request $request)
+    public function playlistsUsuario(Request $request)
     {
         if($request->isMethod('GET')) {}
     }
 
-    public function playlistByIdAndUserId(Request $request)
+    public function playlistByIdAndUsuarioId(Request $request)
     {
         if($request->isMethod('GET')) {}
         if($request->isMethod('PUT')) {}
