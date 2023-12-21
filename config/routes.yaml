@@ -54,7 +54,7 @@ capitulos:
 
 capituloId:
   path: /podcast/{id}/capitulo/{id}
-  controller: App\Controller\CapituloController::capituloByIdandPodcastId
+  controller: App\Controller\CapituloController::capituloByIdAndPodcastId
   methods: GET
 
 suscripciones:
