@@ -12,16 +12,6 @@ usuario:
   controller: App\Controller\UsuariosController::usuario
   methods: GET, PUT, DELETE
 
-seguidos_usuario:
-  path: /usuario/{id}/seguidos
-  controller: App\Controller\UsuariosController::seguidosUsuario
-  methods: GET
-
-seguir_usuario:
-  path: /usuario/{id}/sigue/{usuario_seguido_id}
-  controller: App\Controller\UsuariosController::seguirUsuario
-  methods: POST, DELETE
-
 configuraciones_usuario:
   path: /configuracion/{id}/configuracion
   controller: App\Controller\ConfiguracionController::configuracionUsuario
@@ -66,6 +56,8 @@ suscripcion:
   path: /usuario/{id}/suscripcion/{id}
   controller: App\Controller\SuscripcionController::suscripcionByIdAndUsuarioId
   methods: GET
+
+  # DESDE AQUI HASTA ARRIBA, BORRAR COMENTARIO AL TERMINAR QUE SI NO MARIO LLORA :(
 
 playlists:
   path: /playlists
