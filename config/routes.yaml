@@ -2,7 +2,6 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-
 usuarios:
   path: /usuarios
   controller: App\Controller\UsuariosController::usuarios
@@ -87,4 +86,3 @@ playlist_usuario:
   path: /usuario/{id}/playlist/{id}
   controller: App\Controller\PlaylistController::playlistByIdAndUserId
   methods: GET, PUT, DELETE
-
