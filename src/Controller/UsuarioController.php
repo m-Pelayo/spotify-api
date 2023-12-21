@@ -19,15 +19,4 @@ class UsuarioController extends AbstractController
         if($request->isMethod('PUT')) {}
         if($request->isMethod('DELETE')) {}
     }
-
-    public function seguidosUsuario(Request $request)
-    {
-        if($request->isMethod('GET')) {}
-    }
-
-    public function seguirUsuario(Request $request)
-    {
-        if($request->isMethod('POST')) {}
-        if($request->isMethod('DELETE')) {}
-    }
 }
