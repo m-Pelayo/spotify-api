@@ -75,7 +75,7 @@ playlists_usuario:
   methods: GET
 
 playlist_usuario:
-  path: /usuario/{id}/playlist/{id}
+  path: /usuario/{usuarioId}/playlist/{playlistId}
   controller: App\Controller\PlaylistController::playlistByIdAndUsuarioId
   methods: GET|PUT|DELETE
 
@@ -95,9 +95,9 @@ canciones_playlist:
   methods: GET
 
 anadir_cancion_playlist:
-  path: /playlist/{id}/cancion/{id}
+  path: /playlist/{playlistId}/cancion/{cancionId}
   controller: App\Controller\CancionController::anadirCancionToPlaylist
-  methods: POST, DELETE
+  methods: POST|DELETE
 
 artistas:
   path: /artistas
@@ -110,7 +110,7 @@ albums_artista:
   methods: GET
 
 album_artista:
-  path: /artista/{id}/album/{id}
+  path: /artista/{artistaId}/album/{albumId}
   controller: App\Controller\ArtistaController::albumByIdAndArtistaId
   methods: GET
 

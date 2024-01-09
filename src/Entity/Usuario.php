@@ -104,7 +104,7 @@ class Usuario
      *   inverseJoinColumns={
      *     @ORM\JoinColumn(name="podcast_id", referencedColumnName="id")
      *   }
-     * )    
+     * )
      */
     private $podcast = array();
 
