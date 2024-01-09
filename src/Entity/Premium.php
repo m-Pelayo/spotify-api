@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Premium
@@ -16,6 +17,7 @@ class Premium
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_renovacion", type="date", nullable=false)
+     * @Groups({"suscripcion"})
      */
     private $fechaRenovacion;
 
@@ -28,6 +30,7 @@ class Premium
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      * })
+     * @Groups({"suscripcion"})
      */
     private $usuario;
 
@@ -46,4 +49,58 @@ class Premium
         $this->cancion = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
+    /**
+     * Get the value of fechaRenovacion
+     */
+    public function getFechaRenovacion(): \DateTime
+    {
+        return $this->fechaRenovacion;
+    }
+
+    /**
+     * Set the value of fechaRenovacion
+     */
+    public function setFechaRenovacion(\DateTime $fechaRenovacion): self
+    {
+        $this->fechaRenovacion = $fechaRenovacion;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of usuario
+     */
+    public function getUsuario(): Usuario
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * Set the value of usuario
+     */
+    public function setUsuario(Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cancion
+     */
+    public function getCancion(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->cancion;
+    }
+
+    /**
+     * Set the value of cancion
+     */
+    public function setCancion(\Doctrine\Common\Collections\Collection $cancion): self
+    {
+        $this->cancion = $cancion;
+
+        return $this;
+    }
 }

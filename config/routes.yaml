@@ -4,23 +4,23 @@
 
 usuarios:
   path: /usuarios
-  controller: App\Controller\UsuariosController::usuarios
-  methods: GET, POST
+  controller: App\Controller\UsuarioController::usuarios
+  methods: GET|POST
 
 usuario:
   path: /usuario/{id}
-  controller: App\Controller\UsuariosController::usuario
-  methods: GET, PUT, DELETE
+  controller: App\Controller\UsuarioController::usuario
+  methods: GET|PUT|DELETE
 
 configuraciones_usuario:
-  path: /configuracion/{id}/configuracion
+  path: /usuarios/{id}/configuracion
   controller: App\Controller\ConfiguracionController::configuracionUsuario
-  methods: GET, PUT
+  methods: GET|PUT
 
 podcasts:
   path: /podcasts
   controller: App\Controller\PodcastController::podcasts
-  methods: GET, POST
+  methods: GET|POST
 
 podcast:
   path: /podcast/{id}
@@ -32,10 +32,10 @@ podcasts_usuario:
   controller: App\Controller\PodcastController::podcastsUsuario
   methods: GET
 
-seguir_podcast:
-  path: /usuario/{id}/podcast/{id}
-  controller: App\Controller\PodcastController::seguirPodcast
-  methods: POST, DELETE
+#seguir_podcast:
+  #path: /usuario/{id}/podcast/{id}
+  #controller: App\Controller\PodcastController::seguirPodcast
+  #methods: POST|DELETE
 
 capitulos:
   path: /podcast/{id}/capitulos
@@ -43,7 +43,7 @@ capitulos:
   methods: GET
 
 capitulo:
-  path: /podcast/{id}/capitulo/{id}
+  path: /podcast/{podcastId}/capitulo/{capituloId}
   controller: App\Controller\CapituloController::capituloByIdAndPodcastId
   methods: GET
 
@@ -53,7 +53,7 @@ suscripciones:
   methods: GET
 
 suscripcion:
-  path: /usuario/{id}/suscripcion/{id}
+  path: /usuario/{usuarioId}/suscripcion/{suscripcionId}
   controller: App\Controller\SuscripcionController::suscripcionByIdAndUsuarioId
   methods: GET
 
@@ -62,7 +62,7 @@ suscripcion:
 playlists:
   path: /playlists
   controller: App\Controller\PlaylistController::playlists
-  methods: GET, POST
+  methods: GET|POST
 
 playlist:
   path: /playlist/{id}
@@ -77,7 +77,7 @@ playlists_usuario:
 playlist_usuario:
   path: /usuario/{id}/playlist/{id}
   controller: App\Controller\PlaylistController::playlistByIdAndUsuarioId
-  methods: GET, PUT, DELETE
+  methods: GET|PUT|DELETE
 
 canciones:
   path: /canciones
