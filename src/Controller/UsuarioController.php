@@ -15,7 +15,7 @@ class UsuarioController extends AbstractController
     {
         if($request->isMethod('GET')) {
             $usuarios = $this->getDoctrine()->getRepository(Usuario::class)->findAll();
-            $usuarios = $serializer->serialize($usuarios,"json",["groups"=>["usuario"]]);
+            $usuarios = $serializer->serialize($usuarios, 'json', ['groups' => ["usuario"]]);
             
             return new Response($usuarios);
         }
@@ -26,16 +26,16 @@ class UsuarioController extends AbstractController
     public function usuario(Request $request,SerializerInterface $serializer)
     {
         $id = $request->get("id");
+        $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(["id" => $id]);
 
         if($request->isMethod('GET')) {
-            $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(["id"=>$id]);
-            $usuario = $serializer->serialize($usuario,"json",["groups"=>["usuario"]]);
-            
-            return new Response($usuario);
+            $usuario = $serializer->serialize($usuario, 'json', ['groups' => ["usuario"]]);
         }
 
         if($request->isMethod('PUT')) {}
 
         if($request->isMethod('DELETE')) {}
+
+        return new Response($usuario);
     }
 }

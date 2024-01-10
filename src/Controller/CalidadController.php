@@ -14,7 +14,7 @@ class CalidadController extends AbstractController
     {
         if($request->isMethod('GET')) {
             $calidades = $this->getDoctrine()->getRepository(Calidad::class)->findAll();
-            $calidades = $serializer->serialize($calidades, 'json', ['groups' => "calidad"]);
+            $calidades = $serializer->serialize($calidades, 'json', ['groups' => ["calidad"]]);
             
             return new Response($calidades);
         }
