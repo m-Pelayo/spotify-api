@@ -17,12 +17,12 @@ class SuscripcionController extends AbstractController
         if ($request->isMethod('GET')) {
             $id = $request->get('id');
             $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['id' => $id]);
-
             if (!$usuario) {
                 return new Response('Este usuario nunca estuvo subscrito');
             }
             $suscripciones = $this->getDoctrine()->getRepository(Suscripcion::class)->findBy(['premiumUsuario' => $usuario]);
             $suscripciones = $serializer->serialize($suscripciones, 'json', ['groups' => ['suscripcion','usuario']]);
+
             return new Response($suscripciones);
         }
     }
@@ -38,6 +38,7 @@ class SuscripcionController extends AbstractController
                 return new Response('Este usuario nunca estuvo subscrito o la id no coincide');
             }
             $suscripcion = $serializer->serialize($suscripcion, 'json', ['groups' => ['suscripcion','usuario']]);
+            
             return new Response($suscripcion);
         }
     }
