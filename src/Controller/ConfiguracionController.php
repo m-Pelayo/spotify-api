@@ -19,7 +19,7 @@ class ConfiguracionController extends AbstractController
         if($request->isMethod('GET')) {
             $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(["id"=>$id]);
             $configuracion = $this->getDoctrine()->getRepository(Configuracion::class)->findOneBy(["usuario"=>$usuario]);
-            $configuracion = $serializer->serialize($configuracion, 'json', ['groups' => 'configuracion']);
+            $configuracion = $serializer->serialize($configuracion, 'json', ['groups' => ["configuracion"]]);
 
             return new Response($configuracion);
         }
