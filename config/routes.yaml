@@ -32,10 +32,10 @@ podcasts_usuario:
   controller: App\Controller\PodcastController::podcastsUsuario
   methods: GET
 
-#seguir_podcast:
-  #path: /usuario/{id}/podcast/{id}
-  #controller: App\Controller\PodcastController::seguirPodcast
-  #methods: POST|DELETE
+seguir_podcast:
+  path: /usuario/{usuarioId}/podcast/{podcastId}
+  controller: App\Controller\PodcastController::seguirPodcast
+  methods: POST|DELETE
 
 capitulos:
   path: /podcast/{id}/capitulos
@@ -57,7 +57,7 @@ suscripcion:
   controller: App\Controller\SuscripcionController::suscripcionByIdAndUsuarioId
   methods: GET
 
-  # DESDE AQUI HASTA ARRIBA, BORRAR COMENTARIO AL TERMINAR QUE SI NO MARIO LLORA :(
+# DESDE AQUI HASTA ARRIBA, BORRAR COMENTARIO AL TERMINAR QUE SI NO MARIO LLORA :(
 
 playlists:
   path: /playlists

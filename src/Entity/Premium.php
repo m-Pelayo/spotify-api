@@ -49,7 +49,6 @@ class Premium
         $this->cancion = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
      * Get the value of fechaRenovacion
      */

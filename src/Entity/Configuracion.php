@@ -81,8 +81,6 @@ class Configuracion
      */
     private $tipoDescarga;
 
-
-
     /**
      * Get the value of autoplay
      */
