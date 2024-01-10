@@ -19,7 +19,7 @@ class Calidad
      * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @Groups({"configuracion"})
+     * @Groups({"configuracion", "calidad"})
      */
     private $id;
 
@@ -27,7 +27,7 @@ class Calidad
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=15, nullable=false)
-     * @Groups({"configuracion"})
+     * @Groups({"configuracion", "calidad"})
      */
     private $nombre;
 
