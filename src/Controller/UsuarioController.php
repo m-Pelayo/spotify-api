@@ -19,6 +19,7 @@ class UsuarioController extends AbstractController
             
             return new Response($usuarios);
         }
+
         if($request->isMethod('POST')) {}
     }
 
@@ -29,9 +30,12 @@ class UsuarioController extends AbstractController
         if($request->isMethod('GET')) {
             $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(["id"=>$id]);
             $usuario = $serializer->serialize($usuario,"json",["groups"=>["usuario"]]);
+            
             return new Response($usuario);
         }
+
         if($request->isMethod('PUT')) {}
+
         if($request->isMethod('DELETE')) {}
     }
 }
