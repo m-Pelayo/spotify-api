@@ -135,11 +135,11 @@ calidades:
   methods: GET
 
 idiomas:
-  path: /idioma
-  controller: App\Controller\IdiomaController::idioma
+  path: /idiomas
+  controller: App\Controller\IdiomaController::idiomas
   methods: GET
 
 tipos_desarga:
-  path: /tipo_descarga
+  path: /tipos_descarga
   controller: App\Controller\TipoDescargaController::tiposDescarga
   methods: GET
