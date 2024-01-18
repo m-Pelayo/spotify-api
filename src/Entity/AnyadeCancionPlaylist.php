@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * AnyadeCancionPlaylist
@@ -16,6 +17,7 @@ class AnyadeCancionPlaylist
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_anyadida", type="datetime", nullable=false)
+     * @Groups({"cancionPlaylist"})
      */
     private $fechaAnyadida;
 
@@ -28,6 +30,7 @@ class AnyadeCancionPlaylist
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      * })
+     * @Groups({"cancionPlaylist"})
      */
     private $usuario;
 
@@ -40,6 +43,7 @@ class AnyadeCancionPlaylist
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="playlist_id", referencedColumnName="id")
      * })
+     * @Groups({"cancionPlaylist"})
      */
     private $playlist;
 
@@ -52,8 +56,17 @@ class AnyadeCancionPlaylist
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="cancion_id", referencedColumnName="id")
      * })
+     * @Groups({"cancionPlaylist"})
      */
     private $cancion;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fechaAnyadida = new \DateTime();
+    }
 
     /**
      * Get the value of fechaAnyadida

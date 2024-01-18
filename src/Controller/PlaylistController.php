@@ -17,28 +17,26 @@ class PlaylistController extends AbstractController
         if($request->isMethod('GET')) {
             $playlists = $this->getDoctrine()->getRepository(Playlist::class)->findAll();
             $playlists = $serializer->serialize($playlists, 'json', ['groups' => ["playlist"]]);
-
-            return new Response($playlists);
         }
 
         if($request->isMethod('POST')) {
             $bodyData = $request->getContent();
-
             $playlist = $serializer->deserialize($bodyData, Playlist::class, 'json');
-            $playlist = $this->getDoctrine()->getManager()->merge($playlist);
 
+            $playlist = $this->getDoctrine()->getManager()->merge($playlist);
             $this->getDoctrine()->getManager()->flush();
 
             $playlist = $serializer->serialize($playlist, 'json', ['groups' => ["playlistPOST", "usuario"]]);
-
-            return new Response($playlist);
         }
+
+        return new Response($playlists);
     }
 
     public function playlist(Request $request, SerializerInterface $serializer)
     {
         if($request->isMethod('GET')) {
-            $id = $request -> get('id');
+            $id = $request->get('id');
+            
             $playlist = $this->getDoctrine()->getRepository(Playlist::class)->findOneBy(['id' => $id]);
             $playlist = $serializer->serialize($playlist, 'json', ['groups' => ["playlist"]]);
 
@@ -49,7 +47,7 @@ class PlaylistController extends AbstractController
     public function playlistsUsuario(Request $request, SerializerInterface $serializer)
     {
         if($request->isMethod('GET')) {
-            $id = $request -> get('id');
+            $id = $request->get('id');
             $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['id' => $id]);
             $playlists = $usuario->getPlaylist();
             $playlists = $serializer->serialize($playlists, 'json', ['groups' => ["playlist"]]);
@@ -60,8 +58,8 @@ class PlaylistController extends AbstractController
 
     public function playlistByIdAndUsuarioId(Request $request, SerializerInterface $serializer)
     {
-        $usuarioId = $request -> get('usuarioId');
-        $playlistId = $request -> get('playlistId');
+        $usuarioId = $request->get('usuarioId');
+        $playlistId = $request->get('playlistId');
 
         $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['id' => $usuarioId]);
         $playlist = $this->getDoctrine()->getRepository(Playlist::class)->findOneBy(['id' => $playlistId]);
