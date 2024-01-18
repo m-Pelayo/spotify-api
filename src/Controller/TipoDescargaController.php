@@ -14,7 +14,7 @@ class TipoDescargaController extends AbstractController
     {
         if($request->isMethod('GET')) {
             $tiposDescarga = $this->getDoctrine()->getRepository(TipoDescarga::class)->findAll();
-            $tiposDescarga = $serializer->serialize($tiposDescarga, 'json', ['groups' => 'tipo_descarga']);
+            $tiposDescarga = $serializer->serialize($tiposDescarga, 'json', ['groups' => ["tipo_descarga"]]);
             
             return new Response($tiposDescarga);
         }

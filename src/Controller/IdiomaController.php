@@ -14,7 +14,7 @@ class IdiomaController extends AbstractController
     {
         if($request->isMethod('GET')) {
             $idiomas = $this->getDoctrine()->getRepository(Idioma::class)->findAll();
-            $idiomas = $serializer->serialize($idiomas, 'json', ['groups' => 'idioma']);
+            $idiomas = $serializer->serialize($idiomas, 'json', ['groups' => ["idioma"]]);
 
             return new Response($idiomas);
         }

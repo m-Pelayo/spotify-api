@@ -54,8 +54,8 @@ class PodcastController extends AbstractController
         $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['id' => $idUsuario]);
         $podcast = $this->getDoctrine()->getRepository(Podcast::class)->findOneBy(['id' => $idPodcast]);
 
-        if(!$usuario || !$podcast){
-            return new Response('Usuario o podcast no existente');
+        if(!$podcast){
+            return new Response('Podcast no existente');
             
         }else{
             
