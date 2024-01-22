@@ -18,8 +18,7 @@ class CapituloController extends AbstractController
             $podcast = $this->getDoctrine()->getRepository(Podcast::class)->findOneBy(['id' => $podcastId]);
 
             $capitulos = $this->getDoctrine()->getRepository(Capitulo::class)->findBy(['podcast' => $podcast]);
-            $capitulos = $serializer->serialize($capitulos, 'json', ['groups' => ["capitulo"]]);
-
+            $capitulos = $serializer->serialize($capitulos, 'json', ['groups' => 'capitulo']);
             return new Response($capitulos);
         }
     }
@@ -32,8 +31,7 @@ class CapituloController extends AbstractController
 
             $podcast = $this->getDoctrine()->getRepository(Podcast::class)->findOneBy(['id' => $podcastId]);
             $capitulo = $this->getDoctrine()->getRepository(Capitulo::class)->findOneBy(['id' => $capituloId, 'podcast' => $podcast]);
-            $capitulo = $serializer->serialize($capitulo, 'json', ['groups' => ["capitulo"]]);
-
+            $capitulo = $serializer->serialize($capitulo, 'json', ['groups' => 'capitulo']);
             return new Response($capitulo);
         }
     }

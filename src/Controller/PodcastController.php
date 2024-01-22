@@ -54,8 +54,8 @@ class PodcastController extends AbstractController
         $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['id' => $idUsuario]);
         $podcast = $this->getDoctrine()->getRepository(Podcast::class)->findOneBy(['id' => $idPodcast]);
 
-        if(!$usuario || !$podcast){
-            return new Response('Usuario o podcast no existente');
+        if(!$podcast){
+            return new Response('Podcast no existente');
             
         }else{
             
@@ -66,9 +66,8 @@ class PodcastController extends AbstractController
                 }
 
                 $usuario->getPodcast()->add($podcast);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($usuario);
-                $em->flush();
+                $this->getDoctrine()->getManager()->persist($usuario);
+                $this->getDoctrine()->getManager()->flush();
                 $podcast = $serializer->serialize($podcast, 'json', ['groups' => 'podcast']);
                 
                 return new Response($podcast);
@@ -81,9 +80,8 @@ class PodcastController extends AbstractController
                 }
 
                 $usuario->getPodcast()->removeElement($podcast);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($usuario);
-                $em->flush();
+                $this->getDoctrine()->getManager()->persist($usuario);
+                $this->getDoctrine()->getManager()->flush();
                 $podcast = $serializer->serialize($podcast, 'json', ['groups' => 'podcast']);
 
                 return new Response($podcast);
