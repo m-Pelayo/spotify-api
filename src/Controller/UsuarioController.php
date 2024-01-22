@@ -2,6 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Calidad;
+use App\Entity\Configuracion;
+use App\Entity\Free;
+use App\Entity\Idioma;
+use App\Entity\TipoDescarga;
 use App\Entity\Usuario;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,9 +26,38 @@ class UsuarioController extends AbstractController
         }
 
         if($request->isMethod('POST')) {
-            //Primero creo el usuario y luego creo la configuracion
-            //Depues tengo que indicar si es premium o free
-            //Si indico que es premium le pongo que la fecha_renovacion poner que es la fecha de hoy
+            $bodydata=$request->getContent();
+
+            $usuario=$serializer->deserialize($bodydata, Usuario::class, 'json');
+            $this->getDoctrine()->getManager()->persist($usuario);
+
+            $free=new Free();
+            $free->setUsuario($usuario);
+            $this->getDoctrine()->getManager()->persist($free);
+
+            $configuracion=new Configuracion();
+
+            $configuracion->setAutoplay(true);
+            $configuracion->setAjuste(true);
+            $configuracion->setNormalizacion(true);
+
+            $calidad=$this->getDoctrine()->getRepository(Calidad::class)->findOneBy(['id'=>1]);
+            $configuracion->setCalidad($calidad);
+
+            $idioma=$this->getDoctrine()->getRepository(Idioma::class)->findOneBy(['id'=>1]);
+            $configuracion->setIdioma($idioma);
+
+            $tipodescarga=$this->getDoctrine()->getRepository(TipoDescarga::class)->findOneBy(['id'=>1]);
+            $configuracion->setTipoDescarga($tipodescarga);
+
+            $configuracion->setUsuario($usuario);
+            $this->getDoctrine()->getManager()->persist($configuracion);
+
+            $this->getDoctrine()->getManager()->flush();
+            
+            $usuariox = [$usuario,$free,$configuracion];
+            $usuariox = $serializer->serialize($usuariox, 'json', ['groups'=>['usuario','free','configuracion']]);
+            return new Response($usuariox);
 
         }
     }
@@ -37,7 +71,16 @@ class UsuarioController extends AbstractController
             $usuario = $serializer->serialize($usuario, 'json', ['groups' => ["usuario"]]);
         }
 
-        if($request->isMethod('PUT')) {}
+        if($request->isMethod('PUT')) {
+            $bodyData = $request->getContent();
+            $usuario = $serializer->deserialize($bodyData, Usuario::class, 'json',['object_to_populate' => $usuario]);
+
+            $usuario = $this->getDoctrine()->getManager()->merge($usuario);
+            $this->getDoctrine()->getManager()->flush();
+
+            $usuario = $serializer->serialize($usuario, 'json', ['groups' => ["usuario"]]);
+
+        }
 
         return new Response($usuario);
     }

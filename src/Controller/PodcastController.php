@@ -66,9 +66,8 @@ class PodcastController extends AbstractController
                 }
 
                 $usuario->getPodcast()->add($podcast);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($usuario);
-                $em->flush();
+                $this->getDoctrine()->getManager()->persist($usuario);
+                $this->getDoctrine()->getManager()->flush();
                 $podcast = $serializer->serialize($podcast, 'json', ['groups' => 'podcast']);
                 
                 return new Response($podcast);
@@ -81,9 +80,8 @@ class PodcastController extends AbstractController
                 }
 
                 $usuario->getPodcast()->removeElement($podcast);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($usuario);
-                $em->flush();
+                $this->getDoctrine()->getManager()->persist($usuario);
+                $this->getDoctrine()->getManager()->flush();
                 $podcast = $serializer->serialize($podcast, 'json', ['groups' => 'podcast']);
 
                 return new Response($podcast);
