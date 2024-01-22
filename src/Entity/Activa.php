@@ -31,6 +31,11 @@ class Activa
      */
     private $playlist;
 
+    public function __construct()
+    {
+        $this->esCompartida = false;
+    }
+
     /**
      * Get the value of esCompartida
      */

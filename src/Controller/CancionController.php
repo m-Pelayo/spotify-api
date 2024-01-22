@@ -15,7 +15,8 @@ class CancionController extends AbstractController
 {
     public function canciones(Request $request, SerializerInterface $serializer)
     {
-        if($request->isMethod('GET')) {
+        if($request->isMethod('GET'))
+        {
             $canciones = $this->getDoctrine()->getRepository(Cancion::class)->findAll();
             $canciones = $serializer->serialize($canciones, 'json', ['groups' => ["cancion"]]);
 
@@ -25,7 +26,8 @@ class CancionController extends AbstractController
 
     public function cancion(Request $request, SerializerInterface $serializer)
     {
-        if($request->isMethod('GET')) {
+        if($request->isMethod('GET'))
+        {
             $id = $request->get('id');
 
             $cancion = $this->getDoctrine()->getRepository(Cancion::class)->findOneBy(['id' => $id]);
@@ -37,14 +39,16 @@ class CancionController extends AbstractController
 
     public function cancionesPlaylist(Request $request, SerializerInterface $serializer)
     {
-        if($request->isMethod('GET')) {
+        if($request->isMethod('GET'))
+        {
             $id = $request->get('id');
             $listaCanciones = [];
 
             $playlist = $this->getDoctrine()->getRepository(Playlist::class)->findOneBy(['id' => $id]);
             $canciones = $this->getDoctrine()->getRepository(AnyadeCancionPlaylist::class)->findBy(['playlist' => $playlist]);
 
-            foreach($canciones as $cancion) {
+            foreach($canciones as $cancion)
+            {
                 $cancion = $cancion->getCancion();
                 
                 $listaCanciones[] = [
@@ -69,10 +73,12 @@ class CancionController extends AbstractController
         $usuario = $playlist->getUsuario();
         $cancion = $this->getDoctrine()->getRepository(Cancion::class)->findOneBy(['id' => $cancionId]);
 
-        $anyadeCancionExist = $this->getDoctrine()->getRepository(AnyadeCancionPlaylist::class)->findOneBy(['cancion'=>$cancion,'usuario'=>$usuario]);
+        $cancionInPlaylist = $this->getDoctrine()->getRepository(AnyadeCancionPlaylist::class)->findOneBy(['cancion'=>$cancion,'usuario'=>$usuario]);
 
-        if($request->isMethod('POST')) {
-            if(!$anyadeCancionExist) {
+        if($request->isMethod('POST'))
+        {
+            if(!$cancionInPlaylist)
+            {
                 $anyadeCancion = new AnyadeCancionPlaylist();
                 $anyadeCancion->setUsuario($usuario);
                 $anyadeCancion->setPlaylist($playlist);
@@ -81,25 +87,31 @@ class CancionController extends AbstractController
                 $anyadeCancion = $this->getDoctrine()->getManager()->merge($anyadeCancion);
                 $this->getDoctrine()->getManager()->flush();
 
-                $anyadeCancion = $serializer->serialize($anyadeCancion, 'json', ['groups' => ["cancionPlaylist", "usuario", "playlist", "cancion"]]);
-            } else {
+                $cancion = $serializer->serialize($anyadeCancion, 'json', ['groups' => ["cancionPlaylist", "usuario", "playlist", "cancion"]]);
+            } 
+            else
+            {
                 return new JsonResponse(['msg' => "Canción previamente añadida"]);
             }
         }
         
-        if($request->isMethod('DELETE')) {
-            if($anyadeCancionExist) {
-                $deletedAnyadeCancion = clone $anyadeCancionExist;
+        if($request->isMethod('DELETE'))
+        {
+            if($cancionInPlaylist)
+            {
+                $deletedAnyadeCancion = clone $cancionInPlaylist;
 
-                $this->getDoctrine()->getManager()->remove($anyadeCancionExist);
+                $this->getDoctrine()->getManager()->remove($cancionInPlaylist);
                 $this->getDoctrine()->getManager()->flush();
 
-                $anyadeCancion = $serializer->serialize($deletedAnyadeCancion, 'json', ['groups' => ["cancionPlaylist", "usuario", "playlist", "cancion"]]);
-            } else {
+                $cancion = $serializer->serialize($deletedAnyadeCancion, 'json', ['groups' => ["cancionPlaylist", "usuario", "playlist", "cancion"]]);
+            }
+            else
+            {
                 return new JsonResponse(['msg' => "La canción no pertenece a la playlist"]);
             }
         }
         
-        return new Response($anyadeCancion);
+        return new Response($cancion);
     }
 }
