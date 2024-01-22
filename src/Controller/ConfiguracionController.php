@@ -38,7 +38,7 @@ class ConfiguracionController extends AbstractController
             }
 
             if(!empty($body_configuracion["ajuste"])){
-                $configuracion->setAutoplay($body_configuracion["ajuste"]);
+                $configuracion->setAjuste($body_configuracion["ajuste"]);
 
             }
 

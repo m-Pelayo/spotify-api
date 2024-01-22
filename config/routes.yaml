@@ -37,22 +37,22 @@ seguir_podcast:
   controller: App\Controller\PodcastController::seguirPodcast
   methods: POST|DELETE
 
-capitulos:
+capitulos_podcast:
   path: /podcast/{id}/capitulos
   controller: App\Controller\CapituloController::capitulosPodcast
   methods: GET
 
-capitulo:
+capitulo_podcast:
   path: /podcast/{podcastId}/capitulo/{capituloId}
   controller: App\Controller\CapituloController::capituloByIdAndPodcastId
   methods: GET
 
-suscripciones:
+suscripciones_usuario:
   path: /usuario/{id}/suscripciones
   controller: App\Controller\SuscripcionController::suscripcionesUsuario
   methods: GET
 
-suscripcion:
+suscripcion_usuario:
   path: /usuario/{usuarioId}/suscripcion/{suscripcionId}
   controller: App\Controller\SuscripcionController::suscripcionByIdAndUsuarioId
   methods: GET
