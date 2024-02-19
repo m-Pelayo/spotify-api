@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 
+use function PHPSTORM_META\type;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\ref;
+
 class UsuarioController extends AbstractController
 {
     public function usuarios(Request $request, SerializerInterface $serializer)
@@ -83,5 +86,18 @@ class UsuarioController extends AbstractController
         }
 
         return new Response($usuario);
+    }
+
+    public function usuarioByUsername(Request $request, SerializerInterface $serializer)
+    {
+        if($request->isMethod("GET"))
+        {
+            $nombre = $request->get('username');
+
+            $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['username' => $nombre]);
+            $usuario = $serializer->serialize($usuario, 'json', ['groups' => ["usuario"]]);
+
+            return new Response($usuario);
+        }
     }
 }
