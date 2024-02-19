@@ -70,30 +70,8 @@ class PlaylistController extends AbstractController
 
         if($request->isMethod('GET')) 
         {
-            $playlists = $this->getDoctrine()->getRepository(Playlist::class)->findAll();
-            $playlistsUsuario = [];
-            $playlistsEliminadas = $this->getDoctrine()->getRepository(Eliminada::class)->findAll();
-
-            foreach($playlists as $playlist) 
-            {
-                foreach($playlistsEliminadas as $playlistEliminada)
-                {
-                    if($playlist === $playlistEliminada->getPlaylist())
-                    {
-                        unset($playlists[array_search($playlist, $playlists)]);
-                    }
-                }
-            }
-
-            foreach($playlists as $playlist)
-            {
-                if($playlist->getUsuario() == $usuario)
-                {
-                    $playlistsUsuario[] = $playlist;
-                }
-            }
-
-            $playlist = $serializer->serialize($playlistsUsuario, 'json', ['groups' => ["playlist"]]);
+            $playlist = $usuario->getPlaylist();
+            $playlist = $serializer->serialize($playlist, 'json', ['groups' => ["playlist"]]);
         }
 
         if($request->isMethod('POST')) 
