@@ -10,6 +10,7 @@ use App\Entity\TipoDescarga;
 use App\Entity\Usuario;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -33,6 +34,17 @@ class UsuarioController extends AbstractController
 
             $usuario=$serializer->deserialize($bodydata, Usuario::class, 'json');
             $this->getDoctrine()->getManager()->persist($usuario);
+            
+            $usuarioExistente = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['username' => $usuario->getUsername()]);
+
+            if($usuarioExistente) {
+                return new JsonResponse(['msg' => "El usuario ya existe"]);
+            }
+
+            $usuarioExistente = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['email' => $usuario->getEmail()]);
+            if($usuarioExistente) {
+                return new JsonResponse(['msg' => "El email ya existe"]);
+            }
 
             $free=new Free();
             $free->setUsuario($usuario);
@@ -60,7 +72,7 @@ class UsuarioController extends AbstractController
             
             $usuariox = [$usuario,$free,$configuracion];
             $usuariox = $serializer->serialize($usuariox, 'json', ['groups'=>['usuario','free','configuracion']]);
-            return new Response($usuariox);
+            return new JsonResponse(['msg' => "Usuario creado correctamente"]);
 
         }
     }
@@ -95,20 +107,6 @@ class UsuarioController extends AbstractController
             $nombre = $request->get('username');
 
             $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['username' => $nombre]);
-            $usuario = $serializer->serialize($usuario, 'json', ['groups' => ["usuario"]]);
-
-            return new Response($usuario);
-        }
-    }
-
-    public function usuarioByUsernameAndEmail(Request $request, SerializerInterface $serializer)
-    {
-        if($request->isMethod("GET"))
-        {
-            $nombre = $request->get('username');
-            $email = $request->get('email');
-
-            $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['username' => $nombre, 'email' => $email]);
             $usuario = $serializer->serialize($usuario, 'json', ['groups' => ["usuario"]]);
 
             return new Response($usuario);
