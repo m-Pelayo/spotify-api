@@ -10,6 +10,7 @@ use App\Entity\TipoDescarga;
 use App\Entity\Usuario;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -37,12 +38,13 @@ class UsuarioController extends AbstractController
             $usuarioExistente = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['username' => $usuario->getUsername()]);
 
             if($usuarioExistente) {
-                return new Response("El usuario ya existe");
+                return new JsonResponse(['msg' => "El usuario ya existe"]);
             }
 
             $usuarioExistente = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['email' => $usuario->getEmail()]);
             if($usuarioExistente) {
-                return new Response("El email ya existe");
+                return new JsonResponse(['msg' => "El email ya existe"]);
+
             }
 
             $free=new Free();
@@ -71,7 +73,8 @@ class UsuarioController extends AbstractController
             
             $usuariox = [$usuario,$free,$configuracion];
             $usuariox = $serializer->serialize($usuariox, 'json', ['groups'=>['usuario','free','configuracion']]);
-            return new Response("Usuario creado correctamente");
+
+            return new JsonResponse(['msg' => "Usuario creado correctamente"]);
 
         }
     }
