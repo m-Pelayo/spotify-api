@@ -84,10 +84,15 @@ class CancionController extends AbstractController
                 $anyadeCancion->setPlaylist($playlist);
                 $anyadeCancion->setCancion($cancion);
 
+                $numeroCanciones = $playlist->getNumeroCanciones();
+                $numeroCanciones = $numeroCanciones + 1;
+                $playlist->setNumeroCanciones($numeroCanciones);
+
                 $anyadeCancion = $this->getDoctrine()->getManager()->merge($anyadeCancion);
+                $this->getDoctrine()->getManager()->persist($playlist);
                 $this->getDoctrine()->getManager()->flush();
 
-                $cancion = $serializer->serialize($anyadeCancion, 'json', ['groups' => ["cancionPlaylist", "usuario", "playlist", "cancion"]]);
+                return new JsonResponse(['msg' => "La canción se ha introducido correctamente"]);
             } 
             else
             {
@@ -112,6 +117,6 @@ class CancionController extends AbstractController
             }
         }
         
-        return new Response($cancion);
+        return new JsonResponse($cancion);
     }
 }
