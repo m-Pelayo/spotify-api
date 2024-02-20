@@ -44,6 +44,7 @@ class UsuarioController extends AbstractController
             $usuarioExistente = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['email' => $usuario->getEmail()]);
             if($usuarioExistente) {
                 return new JsonResponse(['msg' => "El email ya existe"]);
+
             }
 
             $free=new Free();
@@ -72,6 +73,7 @@ class UsuarioController extends AbstractController
             
             $usuariox = [$usuario,$free,$configuracion];
             $usuariox = $serializer->serialize($usuariox, 'json', ['groups'=>['usuario','free','configuracion']]);
+
             return new JsonResponse(['msg' => "Usuario creado correctamente"]);
 
         }
