@@ -12,7 +12,7 @@ En esta práctica, se creará un proyecto Symfony llamado "spotify-api" para exp
 
 ## Pasos a seguir
 
-##### 1. Clona el repositorio 
+##### 1. Clona el repositorio
 
 ```bash
 git clone...
@@ -120,7 +120,7 @@ composer install
 
 - `/tipos-descargas` *[GET]*
 
-## Autores
+## COLABORADORES
 
 | [<img src="https://avatars.githubusercontent.com/u/152878194?v=4" width=115><br><sub>Mario Pelayo</sub>](https://github.com/m-Pelayo) |  [<img src="https://avatars.githubusercontent.com/u/113478355?v=4" width=115><br><sub>Sergio Guillem</sub>](https://github.com/SergioGC1) |  [<img src="https://avatars.githubusercontent.com/u/8101959?v=4" width=115><br><sub>Antonio Calabuig</sub>](https://github.com/buig) |
 | :---: | :---: | :---: |

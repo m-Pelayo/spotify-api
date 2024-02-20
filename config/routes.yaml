@@ -17,6 +17,11 @@ usuario_by_username:
   controller: App\Controller\UsuarioController::usuarioByUsername
   methods: GET
 
+usuario_by_username_and_email:
+  path: /usuarioByUsernameAndEmail/{username}/{email}
+  controller: App\Controller\UsuarioController::usuarioByUsernameAndEmail
+  methods: GET
+
 configuraciones_usuario:
   path: /usuarios/{id}/configuracion
   controller: App\Controller\ConfiguracionController::configuracionUsuario
