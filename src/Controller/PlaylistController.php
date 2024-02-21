@@ -87,8 +87,10 @@ class PlaylistController extends AbstractController
 
             $playlistActiva = new Activa();
             $playlistActiva->setPlaylist($playlist);
-
+            $usuario->getPlaylist()->add($playlist);
+            
             $this->getDoctrine()->getManager()->persist($playlistActiva);
+            $this->getDoctrine()->getManager()->persist($usuario);
             $this->getDoctrine()->getManager()->flush();
             
             return new JsonResponse(['msg' => "Playlist creada con exito"]);
