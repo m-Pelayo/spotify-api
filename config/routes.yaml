@@ -127,6 +127,11 @@ album:
   controller: App\Controller\AlbumController::album
   methods: GET
 
+album_usuario:
+  path: /usuario/{id}/albums
+  controller: App\Controller\AlbumController::albumsUsuario
+  methods: GET
+
 canciones_album:
   path: /album/{id}/canciones
   controller: App\Controller\AlbumController::cancionesAlbum
