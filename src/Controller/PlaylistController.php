@@ -90,8 +90,8 @@ class PlaylistController extends AbstractController
 
             $this->getDoctrine()->getManager()->persist($playlistActiva);
             $this->getDoctrine()->getManager()->flush();
-
-            $playlist = $serializer->serialize($playlist, 'json', ['groups' => ["playlistPOST", "usuario"]]);
+            
+            return new JsonResponse(['msg' => "Playlist creada con exito"]);
         }
 
         return new Response($playlist);

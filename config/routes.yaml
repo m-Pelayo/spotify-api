@@ -17,11 +17,6 @@ usuario_by_username:
   controller: App\Controller\UsuarioController::usuarioByUsername
   methods: GET
 
-usuario_by_username_and_email:
-  path: /usuarioByUsernameAndEmail/{username}/{email}
-  controller: App\Controller\UsuarioController::usuarioByUsernameAndEmail
-  methods: GET
-
 configuraciones_usuario:
   path: /usuarios/{id}/configuracion
   controller: App\Controller\ConfiguracionController::configuracionUsuario
@@ -130,6 +125,11 @@ albums:
 album:
   path: /album/{id}
   controller: App\Controller\AlbumController::album
+  methods: GET
+
+album_usuario:
+  path: /usuario/{id}/albums
+  controller: App\Controller\AlbumController::albumsUsuario
   methods: GET
 
 canciones_album:
