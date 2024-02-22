@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\AnyadeCancionPlaylist;
 use App\Entity\Cancion;
 use App\Entity\Playlist;
+use App\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,10 +71,12 @@ class CancionController extends AbstractController
         $cancionId = $request->get('cancionId');
 
         $playlist = $this->getDoctrine()->getRepository(Playlist::class)->findOneBy(['id' => $playlistId]);
-        $usuario = $playlist->getUsuario();
         $cancion = $this->getDoctrine()->getRepository(Cancion::class)->findOneBy(['id' => $cancionId]);
 
-        $cancionInPlaylist = $this->getDoctrine()->getRepository(AnyadeCancionPlaylist::class)->findOneBy(['cancion'=>$cancion,'usuario'=>$usuario]);
+        $usuarioId = $playlist->getUsuario()->getId();
+        $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findOneBy(['id'=>$usuarioId]);
+
+        $cancionInPlaylist = $this->getDoctrine()->getRepository(AnyadeCancionPlaylist::class)->findOneBy(['cancion'=>$cancion,'usuario'=>$usuario, 'playlist'=>$playlist]);
 
         if($request->isMethod('POST'))
         {
@@ -92,7 +95,7 @@ class CancionController extends AbstractController
                 $this->getDoctrine()->getManager()->persist($playlist);
                 $this->getDoctrine()->getManager()->flush();
 
-                return new JsonResponse(['msg' => "La canción se ha introducido correctamente"]);
+                return new JsonResponse(['msg' => "La canción se ha añadido correctamente"]);
             } 
             else
             {
